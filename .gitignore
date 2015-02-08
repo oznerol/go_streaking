@@ -1,5 +1,8 @@
 .DS_Store
 *.sublime-project
 *.sublime-workspace
+### Meteor ###
+.meteor/local
+.meteor/meteorite
 dump
 settings.json
