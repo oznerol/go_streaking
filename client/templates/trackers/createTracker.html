@@ -1,0 +1,31 @@
+<!--SHOW MY TRACKERS-->
+<template name="createTracker">
+    <div class="page-header">
+      <h5>Create a Tracker</h5>
+    </div>
+
+  <div class="container">
+    <form class="form-create">
+      <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" class="form-control" id="trackerName" placeholder="Enter tracker name">
+      </div>
+      
+      <div class="form-group">
+        <label for="Description">Description</label>
+        <input type="text" class="form-control" id="trackerDesc" placeholder="A brief description">
+      </div>
+
+      <div class="form-group">
+      <label>Sharing</label>
+        <select class="form-control" id="trackerShare">
+          <option>Public</option>
+          <option>Invite Only</option>
+          <option>Private</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Create</button>
+      <button type="button" class="btn cancel">Cancel</button>
+    </form>
+  </div>
+</template>

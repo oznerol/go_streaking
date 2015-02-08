@@ -1,0 +1,37 @@
+<template name="dashboard">
+  <div class="template-dashboard">
+    <div class="page-header">
+      <h1>Dashboard</h1>
+    </div>
+
+    {{> myTrackers}}
+
+  </div>
+</template>
+
+
+
+
+<!--SHOW SPECIFIC TRACKER-->
+<template name="dashboardItem">
+    <div class="page-header">
+      <h5>My Trackers</h5>
+   </div>
+
+  <div class="container">
+    <ul class="list-group">
+
+      {{#each oneItem}}
+        <li class="list-group-item">{{ name }} <span class="label label-default">{{ rating }}</span></li>
+        <p>{{description}}</p>
+        <p>{{share}}</p>
+        <p>{{creatorId}}</p>
+        <p>{{memberIds}}</p>
+        <p>Created: {{createdAt}}</p>
+      {{else}}
+        Invalid ID  
+      {{/each}}
+
+    </ul>
+  </div>
+</template>

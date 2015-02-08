@@ -1,0 +1,32 @@
+<template name="home">
+
+  <div class="template-home">
+    <div class="jumbotron">
+      <div class="container">
+        <h1>We're going streaking!</h1>
+        <p>Do. Track. Repeat.</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>Recent Trackers</h2>
+      <hr>
+      <div class="row">
+      {{#each items}}
+        <div class="col-md-4">
+          <h2>{{ name }}</h2>
+          <p>Created by: {{ itemCreator.profile.name }} </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+      {{else}}
+        No recent trackers!? Someone must be doing something wrong. 
+        {{#if currentUser}}
+        Maybe you should <a href="/dashboard">create one</a>.
+        {{/if}}
+      {{/each}}
+      </div>
+      <hr>
+    </div> 
+  </div>
+</template>
