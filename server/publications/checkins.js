@@ -1,6 +1,7 @@
 Meteor.publishComposite("checkins", function() {
   return {
     find: function() {
+      //console.log("yo!");
       return Checkins.find({});
     }
     // ,

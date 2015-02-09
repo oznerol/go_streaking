@@ -33,8 +33,8 @@ AccountsTemplates.configure({
     continuousValidation: false,
     negativeFeedback: false,
     negativeValidation: true,
-    positiveValidation: true,
-    positiveFeedback: true,
+    positiveValidation: false,
+    positiveFeedback: false,
     showValidating: true,
 
     // Privacy Policy and Terms of Use

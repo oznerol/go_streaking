@@ -9,8 +9,33 @@ Template.myTrackers.helpers({
     return Items.find();
   },
 
+  myCheckins: function() {
+    return Checkins.find();
+  },
+
   checkToday: function() {
 
+    var checks = Checkins.findOne({trackerId: this._id,
+                                    creatorId: Meteor.userId()}, 
+                                    { sort: { createdAt: -1 }});
+
+    if(checks)
+    {
+        var time = moment().add(0, 'minutes');
+        //time = time.startOf('day').toDate();
+
+        //console.log(moment(time).diff(checks.createdAt, 'minutes'));
+        if(moment(time).diff(checks.createdAt, 'minutes'))
+            return false;
+        else
+          return true;
+    }
+    else
+    {
+      return false;
+    }
+
+    return;
     var myItem = this;
     if(!myItem.checkins)
       return false;
@@ -132,7 +157,8 @@ Template.myTrackers.events({
 
   "click .checkin": function(e, tpl){
     e.preventDefault();
-    Meteor.call('Items.checkin', this._id, function(error, response) {
+    Checkins.insert({trackerId: this._id});
+    /*Meteor.call('Items.checkin', this._id, function(error, response) {
       if (error) {
         console.log(error.reason);
       }
@@ -140,7 +166,7 @@ Template.myTrackers.events({
       {
         console.log(response);
       }
-    });
+    });*/
     //Items.checkin(this._id);
   },
 

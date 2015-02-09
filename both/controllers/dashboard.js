@@ -1,10 +1,13 @@
 DashboardController = AppController.extend({
   waitOn: function() {
     //this.state.set('postId', this.params._id);
-    return this.subscribe('itemsForUser', Meteor.userId());
+    return [this.subscribe('itemsForUser', Meteor.userId()),
+            this.subscribe('checkinsForUser', Meteor.userId())
+            ];
   },
   data: function(){
-    return Items.find({});
+    return [Items.find({}),
+            Checkins.find({})];
     //console.log('calling find42');
     //return Items.find({creatorId: this.userId}, 
     //                        { sort: { createdAt: 1 }});

@@ -17,5 +17,9 @@ Items.before.insert(function (userId, doc) {
 });
 
 Items.after.insert(function (userId, doc) {
-	Meteor.users.update( { _id: Meteor.userId() }, { $push: { 'profile.trackers': this._id }} );
+	Meteor.users.update( { _id: Meteor.userId() }, { $push: { 'profile.activetrackers': doc._id }} );
+});
+
+Items.after.remove(function (userId, doc) {
+  Meteor.users.update( { _id: Meteor.userId() }, { $pull: { 'profile.activetrackers': doc._id }} );
 });
