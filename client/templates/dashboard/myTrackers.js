@@ -13,6 +13,36 @@ Template.myTrackers.helpers({
     return Checkins.find();
   },
 
+  streak: function() {
+    var streak = 0;
+    var checks = Checkins.find({trackerId: this._id,
+                                    creatorId: Meteor.userId()}, 
+                                    { sort: { createdAt: -1 }});
+
+    var limit = 'day';
+    var limits = 'days';
+    //limit = 'minute';
+    //limits = 'minutes';
+    
+    var time = moment().startOf(limit).toDate();
+    if(checks)
+    {
+      checks.forEach(function(checkin)
+        {
+            if(moment(time).diff(checkin.createdAt, limits) == 0)
+            {
+                streak++;
+                time = moment(checkin.createdAt).startOf(limit).toDate();
+            }
+            else
+              return streak;
+            
+        });
+    }
+
+    return streak;
+  },
+
   checkToday: function() {
 
     var checks = Checkins.findOne({trackerId: this._id,
@@ -21,52 +51,20 @@ Template.myTrackers.helpers({
 
     if(checks)
     {
-        var time = moment().add(0, 'minutes');
-        //time = time.startOf('day').toDate();
+        var limit = 'day';
+        var limits = 'days';
+        //limit = 'minute';
+        //limits = 'minutes';
 
-        //console.log(moment(time).diff(checks.createdAt, 'minutes'));
-        if(moment(time).diff(checks.createdAt, 'minutes'))
+        var time = moment().add(1, limits).startOf(limit).toDate();
+        
+        if(moment(time).diff(checks.createdAt, limits))
             return false;
         else
           return true;
     }
-    else
-    {
-      return false;
-    }
-
-    return;
-    var myItem = this;
-    if(!myItem.checkins)
-      return false;
-
-    var time = moment().add(1, 'days');
-    time = time.startOf('day').toDate();
-
-    if(moment(time).diff(myItem.checkins[1].date, 'days'))
-        return false;
-    else
-      return true;
-
     
-    if(myItem.checkins)
-    {
-        Meteor.call('getServerDate', function(error, response) 
-        {
-          if (error) {
-            console.log(error.reason);
-          }
-          else
-          {
-            //console.log(response);
-            //console.log(moment(response).diff(myItem.createdAt, 'days'));
-            //console.log(moment(response).diff(checkin[0].date, 'days'));
-            //console.log(response - checkin[0].date); // -8 (days) )
-          }
-        });
-    }
-    
-    
+    return false;
   },
 
   calOptions: function() {
