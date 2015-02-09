@@ -6,3 +6,4 @@
 .meteor/meteorite
 dump
 settings.json
+server/email

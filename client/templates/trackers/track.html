@@ -1,0 +1,23 @@
+<!--SHOW SPECIFIC TRACKER-->
+<template name="track">
+    <div class="page-header">
+      <h5>My Trackers</h5>
+   </div>
+
+  <div class="container">
+    <ul class="list-group">
+
+      {{#each oneItem}}
+        <li class="list-group-item">{{ name }} <span class="label label-default">{{ rating }}</span></li>
+        <p>{{description}}</p>
+        <p>{{share}}</p>
+        <p>{{creatorId}}</p>
+        <p>{{memberIds}}</p>
+        <p>Created: {{createdAt}}</p>
+      {{else}}
+        Invalid ID  
+      {{/each}}
+
+    </ul>
+  </div>
+</template>

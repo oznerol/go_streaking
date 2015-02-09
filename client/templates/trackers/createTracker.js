@@ -3,9 +3,9 @@ Template.createTracker.rendered = function() {
 };
 
 Template.createTracker.helpers({
-  myItems: function() {
-    return Items.find();
-  },
+  //myItems: function() {
+  //  return Items.find();
+  //},
 
   creating: function() {
     return Session.get('creating');

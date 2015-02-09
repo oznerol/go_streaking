@@ -1,8 +1,8 @@
 Meteor.startup(function() {
 
   Meteor.Mailgun.config({
-    username: 'postmaster@domain.com',
-    password: 'password-goes-here'
+    username: 'sandboxdd3959e54186476b955aede11cd71562.mailgun.org',
+    password: '1bfca1a5e9cac4697daf1b93c25a2e1c'
   });
 
   Meteor.methods({

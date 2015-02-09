@@ -4,7 +4,44 @@ Template.myTrackers.rendered = function() {
 
 Template.myTrackers.helpers({
   myItems: function() {
+    //console.log('calling find1');
+    //console.log(this);
     return Items.find();
+  },
+
+  checkToday: function() {
+
+    var myItem = this;
+    if(!myItem.checkins)
+      return false;
+
+    var time = moment().add(1, 'days');
+    time = time.startOf('day').toDate();
+
+    if(moment(time).diff(myItem.checkins[1].date, 'days'))
+        return false;
+    else
+      return true;
+
+    
+    if(myItem.checkins)
+    {
+        Meteor.call('getServerDate', function(error, response) 
+        {
+          if (error) {
+            console.log(error.reason);
+          }
+          else
+          {
+            //console.log(response);
+            //console.log(moment(response).diff(myItem.createdAt, 'days'));
+            //console.log(moment(response).diff(checkin[0].date, 'days'));
+            //console.log(response - checkin[0].date); // -8 (days) )
+          }
+        });
+    }
+    
+    
   },
 
   calOptions: function() {
@@ -91,6 +128,26 @@ Template.myTrackers.helpers({
 Template.myTrackers.events({
   "click .caltest": function(e, tpl){
   	$('#myCalendar').fullCalendar('refetchEvents');
+  },
+
+  "click .checkin": function(e, tpl){
+    e.preventDefault();
+    Meteor.call('Items.checkin', this._id, function(error, response) {
+      if (error) {
+        console.log(error.reason);
+      }
+      else
+      {
+        console.log(response);
+      }
+    });
+    //Items.checkin(this._id);
+  },
+
+  "click .delete": function(e, tpl){
+    e.preventDefault();
+    //console.log(this._id);
+    Items.remove(this._id);
   },
 
   "click .create": function(e, tpl) {

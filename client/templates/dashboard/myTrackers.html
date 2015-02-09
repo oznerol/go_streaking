@@ -9,10 +9,17 @@
       {{#each myItems}}
         <div class="col-md-4">
           <h2>{{ name }}</h2>
-          <p><a class="btn btn-default" href="{{pathFor 'dashboard.item' _id=this._id }}" role="button">View details &raquo;</a></p>
+          <p><a class="btn btn-default" href="{{pathFor 'track' _id=this._id }}" role="button">View details &raquo;</a></p>
+          {{#if checkToday}}
+            <button type="button" class="btn done">Checked In!</button>
+          {{else}}
+            <button type="button" class="btn btn-primary checkin">Check in</button>
+          {{/if}}
+          
+          <button type="button" class="btn btn-primary delete">Delete</button>
         </div>
       {{else}}
-        You don't have any trackers. Maybe you should <a href="/dashboard">create one</a>.
+        You don't have any trackers. Maybe you should <a href="/createTracker">create one</a>.
       {{/each}}
       </div>
     <!--
