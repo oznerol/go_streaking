@@ -9,7 +9,8 @@ HomeController = AppController.extend({
   onBeforeAction: function (pause) {
   	if(Meteor.userId())
   	{
-  		Router.go('dashboard'); 
+      this.next();
+  		//Router.go('dashboard'); 
   	}
   	else
   	{

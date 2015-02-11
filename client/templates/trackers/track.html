@@ -1,23 +1,43 @@
 <!--SHOW SPECIFIC TRACKER-->
 <template name="track">
-    <div class="page-header">
-      <h5>My Trackers</h5>
-   </div>
-
-  <div class="container">
-    <ul class="list-group">
-
-      {{#each oneItem}}
-        <li class="list-group-item">{{ name }} <span class="label label-default">{{ rating }}</span></li>
-        <p>{{description}}</p>
-        <p>{{share}}</p>
-        <p>{{creatorId}}</p>
-        <p>{{memberIds}}</p>
-        <p>Created: {{createdAt}}</p>
-      {{else}}
-        Invalid ID  
-      {{/each}}
-
-    </ul>
+{{#if oneItem}}
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          {{#with oneItem}}
+              {{name}}
+          {{/with}}
+        </h3>
+      </div>
+      <div class="panel-body">
+        {{#with oneItem}}
+          <p>{{description}}</p>
+          <p>{{share}}</p>
+          <p>Created: {{createdAt}}</p>
+        {{/with}}
+      </div>
+    </div>
   </div>
+  <div class="col-md-4">
+    {{> fullcalendar calOptions}}
+  </div>
+</div>
+{{else}}
+<div class="row">
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          Invalid tracker ID
+        </h3>
+      </div>
+      <div class="panel-body">
+        Oops...
+      </div>
+    </div>
+  </div>
+</div>
+{{/if}}
 </template>
