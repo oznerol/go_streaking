@@ -1,13 +1,16 @@
 <!--SHOW MY TRACKERS-->
 <template name="myTrackers">
-    <div class="page-header">
-      <h5>My Trackers</h5>
+<!--<div class="panel panel-info">-->
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+          My Trackers
+      </h3>
     </div>
-
-  <div class="container">
-    <div class="row">
-      {{#each myItems}}
-        <div class="col-md-4">
+    <div class="panel-body">
+    {{#each myItems}}
+      <div class="row">
+        <div class="col-md-4 col-sm-4">
           <h2>{{ name }}</h2>
           <p><a class="btn btn-default" href="{{pathFor 'track' _id=this._id }}" role="button">View details &raquo;</a></p>
           <p>Current streak: {{streak}} days!</p>
@@ -19,30 +22,13 @@
           
           <button type="button" class="btn btn-primary delete">Delete</button>
         </div>
+        <div class="col-md-4 col-md-offset-3 col-sm-4 col-sm-offset-3">
+          {{> fullcalendar calOptions}}
+        </div>
+      </div>
       {{else}}
         You don't have any trackers. Maybe you should <a href="/createTracker">create one</a>.
       {{/each}}
-      </div>
-    <!--
-    <ul class="list-group">
-      {{#each myItems}}
-        <li class="list-group-item"><a href="{{pathFor 'dashboard.item' _id=this._id }}">
-          {{ name }} <span class="label label-default">{{ rating }}</span></a></li>
-      {{else}}
-        <p>
-          You don't have any trackers yet! Maybe you should <a class="create" href="{{ pathFor 'createTracker' }}">create one</a>?
-        </p>
-      {{/each}}
-    </ul>
-    
-    <button type="button" class="btn btn-primary create">Create</button>
-    <button type="button" class="btn btn-primary caltest">Refresh</button>
-
-     {{> fullcalendar calOptions}}
-    -->
-
-  </div>
-
- 
-
+    </div>
+  </div>  
 </template>

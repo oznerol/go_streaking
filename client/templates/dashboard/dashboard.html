@@ -1,10 +1,12 @@
 <template name="dashboard">
-  <div class="template-dashboard">
-    <div class="page-header">
-      <h1>Dashboard</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+		{{> _sidebar}}
     </div>
-
-    {{> myTrackers}}
-
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          {{> myTrackers}}
+	</div>
   </div>
+</div>
 </template>
