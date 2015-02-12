@@ -1,35 +1,63 @@
 <!--SHOW MY TRACKERS-->
 <template name="myTrackers">
 <!--<div class="panel panel-info">-->
-<div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">
-          My Trackers
-      </h3>
-    </div>
-    <div class="panel-body">
-    {{#each myItems}}
-      <div class="row">
-        <div class="col-md-4 col-sm-4">
-          <h2>{{ name }}</h2>
-          <p><a class="btn btn-default" href="{{pathFor 'track' _id=this._id }}" role="button">View details &raquo;</a></p>
-          <p>Current streak: {{streak}} days!</p>
-          {{#if checkToday}}
-            <button type="button" class="btn done">Checked In!</button>
+<div class="container-fluid">
+  <div class="row">
+  <!--show my trackers-->
+    <div class="col-md-7">
+        <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+              My Trackers
+          </h3>
+        </div>
+        <div class="panel-body">
+        {{#each myItems}}
+          <div class="row trackerlist">
+            <div class="col-md-8 col-sm-8 col-xs-6">
+              <h2>
+                <a href="{{pathFor 'track' _id=this._id }}">
+                  {{ name }}
+                </a><p>
+                <small>{{description}}</small></p>
+              </h2>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-6">
+              <p>Current streak: {{streak}} days!</p>
+              <p>
+              {{#if checkToday}}
+                <button type="button" class="btn done disabled">Checked In!</button>
+              {{else}}
+                <button type="button" class="btn btn-primary checkin">Check in</button>
+              {{/if}}
+              </p>
+              <p>
+              <button type="button" class="btn btn-primary delete">Delete</button>
+              </p>
+            </div>
+          </div>
+          <hr>
           {{else}}
-            <button type="button" class="btn btn-primary checkin">Check in</button>
-          {{/if}}
-          
-          <button type="button" class="btn btn-primary delete">Delete</button>
+            You don't have any trackers. Maybe you should <a href="/createTracker">create one</a>.
+          {{/each}}
         </div>
-        <div class="col-md-4 col-md-offset-3 col-sm-4 col-sm-offset-3">
-          {{> fullcalendar calOptions}}
-          <button type="button" class="btn btn-primary caltest">Refresh</button>
-        </div>
-      </div>
-      {{else}}
-        You don't have any trackers. Maybe you should <a href="/createTracker">create one</a>.
-      {{/each}}
+      </div> 
     </div>
-  </div>  
+    <!--show my calendar-->
+    <div class="col-md-5">
+      <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+                Check-in Calendar
+            </h3>
+          </div>
+          <div class="panel-body">
+           <div class="col-md-12 col-sm-12">
+            {{> fullcalendar calOptions}}
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+</div>
 </template>

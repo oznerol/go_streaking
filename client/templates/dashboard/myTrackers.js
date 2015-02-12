@@ -88,7 +88,7 @@ Template.myTrackers.helpers({
     //console.log(myTrack._id);
 
     var eventFunc = function (start, end, tz, callback) {
-            var checks = Checkins.find({trackerId: myTrack._id});
+            var checks = Checkins.find();
 
             var myEvents = new Array();
             //find all, because we've already subscribed to a specific range
@@ -98,8 +98,9 @@ Template.myTrackers.helpers({
               {
                 //console.log(checkin);
                 var user = Meteor.users.findOne(checkin.creatorId);
+                var tracker = Items.findOne({_id: checkin.trackerId});
                 myEvents.push({start: checkin.createdAt,
-                            title: user.profile.name});     
+                            title: tracker.name});     
               });
             }
             callback(myEvents);
