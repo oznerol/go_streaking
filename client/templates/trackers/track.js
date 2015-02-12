@@ -22,7 +22,8 @@ Template.track.helpers({
 
   calOptions: function() {
     var item = Items.findOne();
-    var checks = Checkins.find();
+    var controller = Iron.controller();
+    var checks = Checkins.find({trackerId: controller.state.get('postId')});
 
     var myEvents = new Array();
 
@@ -37,7 +38,7 @@ Template.track.helpers({
       {
         var user = Meteor.users.findOne(checkin.creatorId);
         myEvents.push({start: checkin.createdAt,
-                    title: user.profile.name});     
+                    title: checkin.trackerId});     
       });
     }
 

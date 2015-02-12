@@ -10,11 +10,6 @@ Items.allow({
   }
 });
 
-Items.before.insert(function (userId, doc) {
-  doc.createdAt = moment().toDate();
-  doc.creatorId = userId;
-  doc.memberIds = [userId];
-});
 
 Items.after.insert(function (userId, doc) {
 	Meteor.users.update( { _id: Meteor.userId() }, { $push: { 'profile.activetrackers': doc._id }} );
