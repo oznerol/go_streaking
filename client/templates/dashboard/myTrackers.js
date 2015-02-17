@@ -43,7 +43,10 @@ Template.myTrackers.helpers({
                 time = moment(checkin.createdAt).startOf(limit).toDate();
             }
             else
+            {
+              
               return streak;
+            }
             
         });
     }

@@ -33,6 +33,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="{{ isActiveRoute regex='dashboard' }}"><a href="{{ pathFor 'dashboard' }}"><i class="fa fa-gear"></i> Dashboard</a></li>
+            <li class="{{ isActiveRoute regex='trackerList' }}"><a href="{{ pathFor 'trackerList' }}"><i class="fa fa-list"></i> Community</a></li>
             <li class="{{ isActiveRoute regex='createTracker' }}"><a href="{{ pathFor 'createTracker' }}"><i class="fa fa-plus"></i> Create</a></li>
         </ul>
         {{else}}
